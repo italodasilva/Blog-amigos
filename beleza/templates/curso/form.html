@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block conteudo %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />        
+
+</head>
+<body style ="background-color: white; font-family: 'Ubuntu', sans-serif; color:black;">
+    {% if request.user.is_authenticated %}
+    <h1 style ="margin-top: 10px;">Cadastrar Curso de Beleza</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary" onclick="alert('Curso cadastrado com sucesso!!!')" style="margin-top: 5px; margin-bottom: 5px;background-color: #002257; width: 250px; padding: 10px; border: none; font-size: 20px;"><i class="fa-solid fa-check"></i> Salvar</button>
+    </form>
+
+    <p>
+        <a href="{% url 'index' %}" class="btn btn-success" style="margin-top: 20px; margin-bottom: 5px;background-color: #ff0000; width: 280px; padding: 10px; border: none;"><i class="fa-solid fa-backward-step"></i> VOLTAR</a>
+    </p>
+    {% endif %}
+</body>
+{% endblock %}

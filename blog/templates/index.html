@@ -1,0 +1,459 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="body">
+    <section class="slider">
+        <div class="slides">
+            <!--Radio buttons-->
+            <input type="radio" name="radio-btn" id="radio1" style="display: none;">
+            <input type="radio" name="radio-btn" id="radio2" style="display: none;">
+            <input type="radio" name="radio-btn" id="radio3" style="display: none;">
+            <input type="radio" name="radio-btn" id="radio4" style="display: none;">
+
+
+            <!--slide imagens-->
+            <div class="slide first">
+                <img src="{% static 'images/slide/1.png' %}" alt="Imagem 1" class="img-fluid"/>
+            </div>
+            <div class="slide" style="width: 25%; position: relative; transition: 2s;">
+                <img src="{% static 'images/slide/2.png' %}" alt="Imagem 2" class="img-fluid"/>
+            </div>
+            <div class="slide" style="width: 25%; position: relative; transition: 2s;">
+                <img src="{% static 'images/slide/3.png' %}" alt="Imagem 3" class="img-fluid"/>
+            </div>
+            <div class="slide" style="width: 25%; position: relative; transition: 2s;">
+                <img src="{% static 'images/slide/4.png' %}" alt="Imagem 4" class="img-fluid"/>
+            </div>
+
+            <!--Navigation auto-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+        </div>
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
+    </section>
+    <div class="tela">
+        <div class="titulo">
+            <h2>INSTITUTO AMIGOS DO BEM CUIDAR</h2>
+        </div>
+        <div class="tudo">
+            <div class="Information">
+                <h2>CURSOS PROFISSIONALIZANTE</h2>
+                <div class="button-curso">
+                    <a href="{% url 'curso' %}">Conheça nossos cursos e horários</a>
+                </div>
+                <div class="button-padrinho">
+                    <a href="#">Apadrinhe-se a nossa instituição</a>
+                </div>
+            </div>
+            <div class="imagem">
+                <img src="{% static 'images/Photo.png'%}" height="auto" width="350">
+            </div>
+            <div class="Information-responsivo">
+                <h2>CURSOS PROFISSIONALIZANTE</h2>
+                <div class="button-curso">
+                    <a href="{% url 'curso' %}">Conheça nossos cursos e horários</a>
+                </div>
+                <div class="button-padrinho">
+                    <a href="#">Apadrinhe-se a nossa instituição</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="curso" style="margin-top: 30px;">
+        <div class="diferenciais-index">
+            <div class="diferencial-single">
+                <img src="{% static 'images/Informatica.png'%}" alt="Aprendiz" width="='200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-solid fa-laptop-code"></i> Cursos Profissionalizante</h2>
+                <p>Vários cursos Profissionalizante, pensado na qualidade e para preparar o aluno para o mercado financeiro.</p>
+                <a href="{% url 'customers:profissionalizante-list-view' %}" class="button-card">Confira</a>
+            </div>
+            <div class="diferencial-single">
+                <img src="{% static 'images/Beleza (2).png'%}" alt="Grade" width="='200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-solid fa-house"></i> Beleza</h2>
+                <p>Nosso curso de beleza, conta com vários cursos para você começar a trabalhar na área.</p>
+                <a href="{% url 'curso' %}" class="button-card">Confira</a>
+
+            </div>
+            <div class="diferencial-single">
+                <img src="{% static 'images/Esporte.png' %}" alt="Informatica" width="200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-sharp fa-solid fa-medal"></i> Cultura, Esporte e Lazer</h2>
+                <p>Aqui você encontra vários cursos na cultura, esporte e lazer. Você encontra vários cursos nessa área.</p>
+                <a href="{% url 'curso' %}" class="button-card">Confira</a>
+            </div>
+        </div>
+    </section>  
+    <section class="mapa">
+        <div class="googlemaps">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3754.9313171652634!2d-44.077510499999995!3d-19.758072499999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xa68d21d0ecf869%3A0xeb79864f9f86d70f!2sR.%20Francisco%20Augusto%20Vi%C3%AAira%2C%2020%20-%20Sevilha%20(1%20Se%C3%A7%C3%A3o)%2C%20Ribeir%C3%A3o%20das%20Neves%20-%20MG%2C%2033855-320!5e0!3m2!1spt-BR!2sbr!4v1676037097187!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="400px"></iframe>
+        </div>
+    </section>
+</body>
+</html>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<style>
+    body{
+        width: 100%;
+    }
+
+    .Information{
+    margin-right: 100px;
+    }
+
+    .Information h2{
+    font-family: "Lato", sans-serif;
+    font-size: 20px;
+    color: #0f1244;
+    margin-bottom: 20px;
+    }
+
+    .Information-responsivo{
+        display: none;
+    }
+
+.button-curso a{
+    padding: 10px 15px;
+    background-color: #0f1244;
+    color: white;
+    border: 2px solid white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+}
+
+.button-padrinho a{
+    padding: 10px 15px;
+    background-color: #0f1244;
+    color: white;
+    border: 2px solid white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+}
+
+    .titulo{
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    color: #0f1244;
+    text-align: center;
+}
+    .slider{
+    margin: 0 auto;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    margin-top: -60px;
+    margin-bottom: 80px;
+    }
+
+    .slides{
+        width: 500%;
+        height: 700px;
+        display: flex;
+    }
+
+    .slides input{
+        display: none;
+    }
+
+    .slide{
+        width: 25%;
+        position: relative;
+        transition: 2s;
+    }
+
+    .slide img{
+        width: 80%;
+        height: 450px;
+    }
+
+    .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-top: -275px;
+        margin-left: 300px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .manual-btn{
+        border: 2px solid #a5046a;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 2s;
+    }
+
+    .manual-btn:not(:last-child){
+        margin-right: 30px;
+    }
+
+    .manual-btn:hover{
+        background-color: #a5046a;
+    }
+
+
+
+    #radio1:checked ~ .first{
+        margin-left: 0;
+    }
+
+    #radio2:checked ~ .first{
+        margin-left: -25%;
+    }
+
+    #radio3:checked ~ .first{
+        margin-left: -50%;
+    }
+
+    #radio4:checked ~ .first{
+        margin-left: -75%;
+    }
+    #radio5:checked ~ .first{
+        margin-left: -100%;
+    }
+
+    .navigation-auto div{
+        border: 2px solid #a5046a;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 2s;
+    }
+
+    .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 425px;
+        margin-left: 300px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navigation-auto div:not(:last-child){
+        margin-right: 30px;
+    }
+
+    #radio1:checked ~ .navigation-auto .auto-btn1{
+        background-color: #a5046a;
+    }
+
+    #radio2:checked ~ .navigation-auto .auto-btn2{
+        background-color: #a5046a;
+    }
+
+    #radio3:checked ~ .navigation-auto .auto-btn3{
+        background-color: #a5046a;
+    }
+
+    #radio4:checked ~ .navigation-auto .auto-btn4{
+        background-color: #a5046a;
+    }
+
+    .diferenciais-index{
+    display: flex;
+    
+    }
+    .diferencial-single{
+    border-radius: 12px;
+    background-color: white;
+    margin-top: 20px;
+    
+    margin-right: 5%;
+    padding: 20px 20px;
+    }
+
+    .diferencial-single i{
+    color: #0f1244;
+    font-size: 22px;
+}
+
+    .diferencial-single h2{
+        color: #0f1244;
+        margin-top: 20px 0;
+        font-size: 17px;
+    }
+
+    .diferencial-single p{
+        color:gray;
+        font-size: 13px;
+        line-height: 30px;
+    }
+
+    .button-card{
+        background-color: #0f1244;
+        color: white;
+        text-decoration: none;
+        border: 2px solid white;
+        border-radius: 12px;
+        padding: 8px 14px;
+    }
+
+    .button-card:hover{
+        background-color: #A9056A;
+    }
+    @media (max-width: 800px) {
+        .slider{
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin-top: -60px;
+        margin-bottom: -180px;
+        }
+
+        .slide img{
+        width: 80%;
+        height: auto;
+        }
+        .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-left: -35px;
+        margin-top: -475px;
+        display: flex;
+        justify-content: center;
+        }
+        .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 225px;
+        margin-left: -35px;
+        display: flex;
+        justify-content: center;
+        }
+
+        .titulo h2{
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        }
+
+        .tudo{
+            display: block;
+        }
+
+        .Information{
+            display: none;
+        }
+
+        .Information-responsivo{
+            display: block;
+        }
+
+        .Information-responsivo h2{
+            font-family: "Lato", sans-serif;
+            font-size: 14px;
+            color: #0f1244;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .imagem img{
+            width: 300px;
+            height: auto;
+        }
+        .diferenciais-index{
+            display: block;
+        }
+
+        iframe{
+            width: 400px;
+            height: 400px;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .slider{
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin-top: -60px;
+        margin-bottom: -180px;
+        }
+
+        .slide img{
+        width: 80%;
+        height: auto;
+        }
+        .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-left: -35px;
+        margin-top: -475px;
+        display: flex;
+        justify-content: center;
+        }
+        .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 225px;
+        margin-left: -35px;
+        display: flex;
+        justify-content: center;
+        }
+
+        .titulo h2{
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        }
+
+        .tudo{
+            display: block;
+        }
+
+        .Information{
+            display: none;
+        }
+
+        .Information-responsivo{
+            display: block;
+        }
+
+        .Information-responsivo h2{
+            font-family: "Lato", sans-serif;
+            font-size: 14px;
+            color: #0f1244;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .imagem img{
+            width: 300px;
+            height: auto;
+        }
+        .diferenciais-index{
+            display: block;
+        }
+
+        iframe{
+            width: 400px;
+            height: 400px;
+        }
+    }
+</style>
+
+{% endblock %}

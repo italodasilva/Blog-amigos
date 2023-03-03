@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <section class="curso" style="margin-top: 30px;">
+        <div class="diferenciais-index">
+            <div class="diferencial-single">
+                <img src="{% static 'images/Informatica.png'%}" alt="Aprendiz" width="='200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-solid fa-laptop-code"></i> Cursos Profissionalizante</h2>
+                <p>Vários cursos Profissionalizante, pensado na qualidade e para preparar o aluno para o mercado financeiro.</p>
+                <a href="{% url 'customers:profissionalizante-list-view' %}" class="button-card">Confira</a>
+            </div>
+            <div class="diferencial-single">
+                <img src="{% static 'images/Beleza (2).png'%}" alt="Grade" width="='200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-solid fa-house"></i> Beleza</h2>
+                <p>Nosso curso de beleza, conta com vários cursos para você começar a trabalhar na área.</p>
+                <a href="{% url 'beleza:curso-list-view' %}" class="button-card">Confira</a>
+
+            </div>
+            <div class="diferencial-single">
+                <img src="{% static 'images/Esporte.png' %}" alt="Informatica" width="200" height="200" style="margin-left: 40px;"/>
+                <h2><i class="fa-sharp fa-solid fa-medal"></i> Cultura, Esporte e Lazer</h2>
+                <p>Aqui você encontra vários cursos na cultura, esporte e lazer. Você encontra vários cursos nessa área.</p>
+                <a href="{% url 'esporte:atividade-list-view' %}" class="button-card">Confira</a>
+            </div>
+        </div>
+    </section>  
+</body>
+</html>
+<style>
+    .diferenciais-index{
+    display: flex;
+    margin-bottom: 100px;
+    }
+    .diferencial-single{
+   border-radius: 12px;
+   background-color: white;
+   margin-top: 20px;
+   margin-left: 20px;
+   padding: 20px 20px;
+    }
+
+    .diferencial-single i{
+    color: #0f1244;
+    font-size: 22px;
+}
+
+    .diferencial-single h2{
+        color: #0f1244;
+        margin-top: 20px 0;
+        font-size: 17px;
+    }
+
+    .diferencial-single p{
+        color:gray;
+        font-size: 13px;
+        line-height: 30px;
+    }
+
+    .button-card{
+        background-color: #0f1244;
+        color: white;
+        text-decoration: none;
+        border: 2px solid white;
+        border-radius: 12px;
+        padding: 8px 14px;
+    }
+
+    .button-card:hover{
+        background-color: #A9056A;
+    }
+
+    body{
+    background-image: url(https://media.istockphoto.com/id/1370858067/pt/vetorial/neutral-abstract-background-minimal-poster-template-with-diagonal-shapes-calm-design-with.jpg?s=612x612&w=0&k=20&c=qYBImSM3i26obiKF2betJFfwZUTummN3RSXUmu88VXE=);
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+
+    @media (max-width: 800px) {
+        .diferenciais-index{
+            display: block;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .diferenciais-index{
+            display: block;
+        }
+    }
+</style>
+{% endblock conteudo %}

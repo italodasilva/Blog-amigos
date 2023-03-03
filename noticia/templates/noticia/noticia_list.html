@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main class="container">
+        <div class="p-4 p-md-5 mb-4 text-secondary bg-light rounded">
+            <div class="col-md-6 px-0">
+                <h1 class="display-4 fst-italic">Amigos do Bem Cuidar</h1>
+                <p class="lead my-3">O amigos do Bem Cuidar está chegando!!! Somos um projeto de educação e de apoio a cidadania, oferecemos diversos cursos profissionalizante, área da beleza, cultura, esporte e lazer. Que tal você inscrever nos nossos cursos que já estão disponível?</p>
+                <p class="lead mb-0">
+                    <a href="{% url 'curso' %}" class="text-blue">Conheça nossos cursos...</a>
+                </p>
+            </div>
+        </div>
+        <div class="row mb-2">
+            {% for noticia in object_list %}
+            <div class="col-md-6">
+                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <strong class="d-inline-block mb-2 text-primary">News</strong>
+                        <h3 class="mb-3 fst-italic">{{noticia.titulo}}</h3>
+                        <img src="{{noticia.imagem.url}}" class="img-fluid" alt="Imagem responsiva">
+                        <div class="mb-1 text-nuted">Publicado em: {{noticia.data}}</div>
+                        <a href="{% url 'noticia:noticia-html-view' noticia.pk %}" class="text-info">Leia a noticia...</a>
+                        {% if request.user.is_authenticated %}
+                        <div class="acoes">
+                            <a href="{% url 'noticia:editar noticia' noticia.pk %}" class="btn btn-sm btn-warning" title="Editar categoria"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+    
+                            <a href="{% url 'noticia:excluir noticia' noticia.pk %}" class="btn btn-sm btn-danger" title="Excluir" style="color: black;"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<style>
+    body{
+        background-image: url(https://media.istockphoto.com/id/1370858067/pt/vetorial/neutral-abstract-background-minimal-poster-template-with-diagonal-shapes-calm-design-with.jpg?s=612x612&w=0&k=20&c=qYBImSM3i26obiKF2betJFfwZUTummN3RSXUmu88VXE=);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
+{% endblock conteudo%}

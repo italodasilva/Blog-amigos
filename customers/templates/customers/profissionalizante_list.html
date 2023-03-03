@@ -1,0 +1,326 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section class="slider">
+        <div class="slides">
+            <!--Radio buttons-->
+            <input type="radio" name="radio-btn" id="radio1">
+            <input type="radio" name="radio-btn" id="radio2">
+            <input type="radio" name="radio-btn" id="radio3">
+            <input type="radio" name="radio-btn" id="radio4">
+
+
+            <!--slide imagens-->
+            <div class="slide first">
+                <img src="{% static 'images/profissionalizante/1.png' %}" alt="Imagem 1"/>
+            </div>
+            <div class="slide">
+                <img src="{% static 'images/profissionalizante/2.png' %}" alt="Imagem 2"/>
+            </div>
+            <div class="slide">
+                <img src="{% static 'images/profissionalizante/3.png' %}" alt="Imagem 3"/>
+            </div>
+            <div class="slide">
+                <img src="{% static 'images/profissionalizante/4.png' %}" alt="Imagem 4"/>
+            </div>
+
+            <!--Navigation auto-->
+            <div class="navigation-auto">
+                <div class="auto-btn1"></div>
+                <div class="auto-btn2"></div>
+                <div class="auto-btn3"></div>
+                <div class="auto-btn4"></div>
+            </div>
+        </div>
+        <div class="manual-navigation">
+            <label for="radio1" class="manual-btn"></label>
+            <label for="radio2" class="manual-btn"></label>
+            <label for="radio3" class="manual-btn"></label>
+            <label for="radio4" class="manual-btn"></label>
+        </div>
+    </section>
+    <div class="tela">
+        <div class="titulo">
+            <h2>CURSOS DA ÁREA DA BELEZA</h2>
+        </div>
+        {% if request.user.is_authenticated %}
+        <div class="profissionalizante">
+            <a href="{% url 'customers:cadastrar profissionalizante' %}" class="btn btn-success" style="margin-top: 5px; margin-bottom: 5px;background-color: black; width: 320px; padding: 8px; border: none; font-size: 20px;"><i class="fa-solid fa-plus"></i> CRIAR CURSO</a>
+        </div>
+        {% endif %}
+        {% for profissionalizante in object_list %}
+        <div class="diferenciais-index">
+            <div class="diferencial-single">
+                <img src="{{profissionalizante.imagem.url}}" alt="site" width="='350" height="350px" style="border: 4px solid #0f1244; border-radius: 10px; margin-bottom: 20PX;"/>
+                <h2><i class="fa-solid fa-user-tie"></i> {{profissionalizante.nome}}</h2>
+                <p>{{profissionalizante.descricao}}</p>
+                <a href="{% url 'customers:cadastrar customer' %}" class="btn btn-sm btn-primary" style="background-color: #0f1244; color: white; text-decoration: none; border: 2px solid white; border-radius: 12px; padding: 10px 18px; margin-bottom: 30px;"><i class="fa-solid fa-pencil"></i> Inscreva-se</a>
+                {% if request.user.is_authenticated %}
+                <div class="ações">
+                    <a href="{% url 'customers:editar profissionalizante' profissionalizante.pk %}" class="btn btn-sm btn-warning" title="Editar categoria"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+    
+                        <a href="{% url 'customers:excluir profissionalizante' profissionalizante.pk %}" class="btn btn-sm btn-danger" title="Excluir" style="color: black;"><i class="fa-solid fa-trash-can"></i> Excluir</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+<style>
+    body{
+        background-image: url(https://media.istockphoto.com/id/1370858067/pt/vetorial/neutral-abstract-background-minimal-poster-template-with-diagonal-shapes-calm-design-with.jpg?s=612x612&w=0&k=20&c=qYBImSM3i26obiKF2betJFfwZUTummN3RSXUmu88VXE=);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .slider{
+    margin: 0 auto;
+    width: 500px;
+    height: 700px;
+    overflow: hidden;
+    margin-bottom: 80px;
+    }
+
+    .slides{
+        width: 500%;
+        height: 700px;
+        display: flex;
+    }
+
+    .slides input{
+        display: none;
+    }
+
+    .slide{
+        width: 25%;
+        position: relative;
+        transition: 2s;
+    }
+
+    .slide img{
+        width: 500px;
+        height: auto;
+    }
+
+    .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-top: -250px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .manual-btn{
+        border: 2px solid #a5046a;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 2s;
+    }
+
+    .manual-btn:not(:last-child){
+        margin-right: 30px;
+    }
+
+    .manual-btn:hover{
+        background-color: #a5046a;
+    }
+
+
+
+    #radio1:checked ~ .first{
+        margin-left: 0;
+    }
+
+    #radio2:checked ~ .first{
+        margin-left: -25%;
+    }
+
+    #radio3:checked ~ .first{
+        margin-left: -50%;
+    }
+
+    #radio4:checked ~ .first{
+        margin-left: -75%;
+    }
+    #radio5:checked ~ .first{
+        margin-left: -100%;
+    }
+
+    .navigation-auto div{
+        border: 2px solid #a5046a;
+        padding: 5px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 2s;
+    }
+
+    .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 450px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .navigation-auto div:not(:last-child){
+        margin-right: 30px;
+    }
+
+    #radio1:checked ~ .navigation-auto .auto-btn1{
+        background-color: #a5046a;
+    }
+
+    #radio2:checked ~ .navigation-auto .auto-btn2{
+        background-color: #a5046a;
+    }
+
+    #radio3:checked ~ .navigation-auto .auto-btn3{
+        background-color: #a5046a;
+    }
+
+    #radio4:checked ~ .navigation-auto .auto-btn4{
+        background-color: #a5046a;
+    }
+    .tela{
+        margin-top: -200px;
+        margin-bottom: 100px;
+    }
+    .titulo{
+        color: #0f1244;
+    }
+    .diferenciais-index{
+    display: flex;
+    flex-wrap: wrap;
+    }
+
+    .diferencial-single{
+   border-radius: 12px;
+   background-color: white;
+   width: 100%;
+   margin-top: 20px;
+   padding: 20px 20px;
+    }
+
+    .diferencial-single h2{
+        color: #0f1244;
+        margin-top: 20px 0;
+        font-size: 22px;
+    }
+
+    .diferencial-single p{
+        color:gray;
+        font-size: 13px;
+        line-height: 20px;
+    }
+    @media (max-width: 800px) {
+        .slider{
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin-top: -60px;
+        margin-bottom: 200px;
+        }
+
+        .slide img{
+        width: 80%;
+        height: auto;
+        }
+        .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-left: -35px;
+        margin-top: -275px;
+        display: flex;
+        justify-content: center;
+        }
+        .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 425px;
+        margin-left: -35px;
+        display: flex;
+        justify-content: center;
+        }
+        .titulo h2{
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        margin-left: 20px;
+        }
+        .diferenciais-index{
+            display: block;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .slider{
+        margin: 0 auto;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        margin-top: -60px;
+        margin-bottom: 200px;
+        }
+
+        .slide img{
+        width: 80%;
+        height: auto;
+        }
+        .manual-navigation{
+        position: absolute;
+        width: 500px;
+        margin-left: -35px;
+        margin-top: -275px;
+        display: flex;
+        justify-content: center;
+        }
+        .navigation-auto{
+        position: absolute;
+        width: 500px;
+        margin-top: 425px;
+        margin-left: -35px;
+        display: flex;
+        justify-content: center;
+        }
+        .titulo h2{
+        font-family: "Lato", sans-serif;
+        font-size: 18px;
+        margin-left: 20px;
+        }
+        .diferenciais-index{
+            display: block;
+        }
+    }
+</style>
+<script>
+    let count = 1;
+    document.getElementById("radio1").checked = true;
+
+    setInterval( function(){
+        nextImage();
+    },5000)
+
+    function nextImage(){
+        count++;
+        if(count>4){
+            count=1;
+        }
+
+        document.getElementById("radio"+count).checked = true;
+
+    }
+</script>
+{% endblock conteudo%}
